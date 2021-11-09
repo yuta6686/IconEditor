@@ -5,8 +5,53 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:IconEditor"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
+        Title="☆スター・バースト・アイコン・エディタ☆" 
+        Icon="Abstruct (2).png"
+        >
+    <Grid Background="Black">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <Menu Grid.Row="0" Height="auto">
+            <MenuItem Header=" ファイル(_F)">
+                <MenuItem x:Name="MenuItem_New" Header="新規(_N)                           [Ctrl] N ">
+                    <MenuItem x:Name="MenuItem_NewIn" Header="General"></MenuItem>
+                    <MenuItem x:Name="MenuItem_NewIn1" Header="2D Animation"></MenuItem>
+                    <MenuItem x:Name="MenuItem_NewIn2" Header="Sculpting"></MenuItem>
+                    <MenuItem x:Name="MenuItem_NewIn3" Header="VFX"></MenuItem>
+                    <MenuItem x:Name="MenuItem_NewIn4" Header="Video Editing"></MenuItem>
+                </MenuItem>
+
+                <MenuItem x:Name="MenuItem_Open" Header="開く(_O)...                          [Ctrl] O ">
+
+                </MenuItem>
+                <MenuItem x:Name="MenuItem_OpenRecent" Header="最近使用したファイル...      [Shit][Ctrl] S ">
+
+                </MenuItem>
+                <MenuItem x:Name="MenuItem_Save" Header="保存(_S)                           [Ctrl] S ">
+
+                </MenuItem>
+                <MenuItem x:Name="MenuItem_SaveAs" Header="名前をつけて保存...          [Ctrl Shift] S  ">
+
+                </MenuItem>
+                <MenuItem x:Name="MenuItem_Append" Header="アペンド...">
+
+                </MenuItem>
+                <MenuItem x:Name="MenuItem_Import" Header="インポート...">
+
+                </MenuItem>
+                <MenuItem x:Name="MenuItem_Export" Header="エクスポート...">
+
+                </MenuItem>
+                <MenuItem x:Name="MenuItem_Finalize" Header="終了(_Q)                           [Ctrl] Q">
+
+                </MenuItem>
+
+            </MenuItem>
+        </Menu>
         
+        <Canvas Grid.Row="1" x:Name="MainCanvas2" Height="640" Width="640" Background="DarkSlateBlue" Margin="0.4,0,76.6,-220" Grid.RowSpan="3" Grid.Column="2" Initialized="MainCanvas2_Initialized"></Canvas>
     </Grid>
 </Window>
