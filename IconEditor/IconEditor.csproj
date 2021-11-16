@@ -100,5 +100,18 @@
   <ItemGroup>
     <Resource Include="Abstruct %282%29.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Exit_16x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\FolderOpened_grey_16x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\NewFile_16x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Redo_16x.png" />
+    <Resource Include="Images\Undo_16x.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

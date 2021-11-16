@@ -70,5 +70,24 @@ namespace IconEditor
             
         }
 
+        
+        private void MenuItem_Finalize_Click(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Shutdown();
+        }
+
+        private void MenuItem_New_Click(object sender, RoutedEventArgs e)
+        {
+            
+        }
+
+        private void MenuItem_Version_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("☆スター・バースト・アイコン・エディター☆\nVersion 0.0.1",
+                "☆スター・バースト・アイコン・エディター☆　のバージョン情報",
+                MessageBoxButton.OK,
+                MessageBoxImage.Information,
+                MessageBoxResult.Yes);
+        }
     }
 }

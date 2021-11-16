@@ -1,7 +1,6 @@
 C:\Users\yuta2\Desktop\IconEditor\IconEditor\bin\Debug\IconEditor.exe.config
 C:\Users\yuta2\Desktop\IconEditor\IconEditor\bin\Debug\IconEditor.exe
 C:\Users\yuta2\Desktop\IconEditor\IconEditor\bin\Debug\IconEditor.pdb
-C:\Users\yuta2\Desktop\IconEditor\IconEditor\obj\Debug\IconEditor.csproj.AssemblyReference.cache
 C:\Users\yuta2\Desktop\IconEditor\IconEditor\obj\Debug\MainWindow.g.cs
 C:\Users\yuta2\Desktop\IconEditor\IconEditor\obj\Debug\App.g.cs
 C:\Users\yuta2\Desktop\IconEditor\IconEditor\obj\Debug\IconEditor_MarkupCompile.cache
@@ -13,3 +12,4 @@ C:\Users\yuta2\Desktop\IconEditor\IconEditor\obj\Debug\IconEditor.csproj.Generat
 C:\Users\yuta2\Desktop\IconEditor\IconEditor\obj\Debug\IconEditor.csproj.CoreCompileInputs.cache
 C:\Users\yuta2\Desktop\IconEditor\IconEditor\obj\Debug\IconEditor.exe
 C:\Users\yuta2\Desktop\IconEditor\IconEditor\obj\Debug\IconEditor.pdb
+C:\Users\yuta2\Desktop\IconEditor\IconEditor\obj\Debug\IconEditor.csproj.AssemblyReference.cache
