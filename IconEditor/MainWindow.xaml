@@ -8,13 +8,14 @@
         Title="☆スター・バースト・アイコン・エディタ☆" 
         Icon="Abstruct (2).png"
         xmlns:ui="http://schemas.modernwpf.com/2019"
-        ui:WindowHelper.UseModernWindowStyle="True">
+        ui:WindowHelper.UseModernWindowStyle="False">
     
     <!--<ui:SimpleStackPanel Margin="12" Spacing="24">
         <TextBlock Text="My first ModernWPF app" Style="{StaticResource HeaderTextBlockStyle}" />
         <Button Content="I am a button" />
         <Button Content="I am an accent button" Style="{StaticResource AccentButtonStyle}" />
     </ui:SimpleStackPanel>-->
+    
     
     <Grid Background="Black">
         <Grid.RowDefinitions>
@@ -141,5 +142,7 @@
                 <MatrixTransform x:Name="matrixTransform" />
             </Canvas.RenderTransform>
         </Canvas>
+
+        
     </Grid>
 </Window>
