@@ -7,7 +7,15 @@
         mc:Ignorable="d"
         Title="☆スター・バースト・アイコン・エディタ☆" 
         Icon="Abstruct (2).png"
-        >
+        xmlns:ui="http://schemas.modernwpf.com/2019"
+        ui:WindowHelper.UseModernWindowStyle="True">
+    
+    <!--<ui:SimpleStackPanel Margin="12" Spacing="24">
+        <TextBlock Text="My first ModernWPF app" Style="{StaticResource HeaderTextBlockStyle}" />
+        <Button Content="I am a button" />
+        <Button Content="I am an accent button" Style="{StaticResource AccentButtonStyle}" />
+    </ui:SimpleStackPanel>-->
+    
     <Grid Background="Black">
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
@@ -17,7 +25,8 @@
 
         <Menu Grid.Row="0" Height="Auto">
             <MenuItem Header=" ファイル(_F)">
-                <MenuItem x:Name="MenuItem_New" Header="新規(_N)" InputGestureText="[Ctrl] N " Click="MenuItem_New_Click">
+                <MenuItem x:Name="MenuItem_New" Header="新規(_N)" 
+                          InputGestureText="[Ctrl] N " Click="MenuItem_New_Click">
                     <MenuItem.Icon>
                         <Image Source="Images/NewFile_16x.png"/>
                     </MenuItem.Icon>
@@ -28,18 +37,21 @@
                     <MenuItem x:Name="MenuItem_NewIn4" Header="Video Editing"></MenuItem>
                 </MenuItem>
 
-                <MenuItem x:Name="MenuItem_Open" Header="開く(_O)..." InputGestureText="[Ctrl] O ">
+                <MenuItem x:Name="MenuItem_Open" Header="開く(_O)..." 
+                          InputGestureText="[Ctrl] O ">
                     <MenuItem.Icon>
                         <Image Source="Images/FolderOpened_grey_16x.png"/>
                     </MenuItem.Icon>
                 </MenuItem>
-                <MenuItem x:Name="MenuItem_OpenRecent" Header="最近使用したファイル..." InputGestureText="[Shit][Ctrl] S ">
+                <MenuItem x:Name="MenuItem_OpenRecent" Header="最近使用したファイル..." 
+                          InputGestureText="[Shit][Ctrl] S ">
 
                 </MenuItem>
                 <MenuItem x:Name="MenuItem_Save" Header="保存(_S)" InputGestureText="[Ctrl] S ">
 
                 </MenuItem>
-                <MenuItem x:Name="MenuItem_SaveAs" Header="名前をつけて保存..." InputGestureText="[Ctrl Shift] S  ">
+                <MenuItem x:Name="MenuItem_SaveAs" Header="名前をつけて保存..." 
+                          InputGestureText="[Ctrl Shift] S  ">
 
                 </MenuItem>
                 <Separator/>
@@ -54,7 +66,8 @@
 
                 </MenuItem>
                 <Separator/>
-                <MenuItem x:Name="MenuItem_Finalize" Header="終了(_Q)" InputGestureText="[Ctrl] Q" Click="MenuItem_Finalize_Click">
+                <MenuItem x:Name="MenuItem_Finalize" Header="終了(_Q)" 
+                          InputGestureText="[Ctrl] Q" Click="MenuItem_Finalize_Click">
                     <MenuItem.Icon>
                         <Image Source="Images/Exit_16x.png"/>
                     </MenuItem.Icon>
@@ -72,7 +85,12 @@
                         <Image Source="Images/Redo_16x.png"/>
                     </MenuItem.Icon>
                 </MenuItem>
-                
+                <MenuItem x:Name="MenuItem_ZoomIn" Header="拡大" Click="MenuItem_ZoomIn_Click_1">
+                    <!--ここにアイコン-->
+                </MenuItem>
+                <MenuItem x:Name="MenuItem_ZoomOut" Header="縮小" Click="MenuItem_ZoomOut_Click_1">
+                    <!--ここにアイコン-->
+                </MenuItem>
             </MenuItem>
             <MenuItem x:Name="MenuItem_Help" Header="ヘルプ(_H)" InputGestureText="[Ctrl] H">
                 <MenuItem x:Name="MenuItem_Version" Header="バージョン情報(_A)" Click="MenuItem_Version_Click"/>
@@ -99,9 +117,29 @@
             <Button x:Name="Button_zzz" Padding="10" BorderBrush="{x:Null}" Background="{x:Null}">
                 <Image Source="Images/NewFile_16x.png"/>
             </Button>
+
+            <Label Name="ZoomLavel" Content="100%" Width="40" HorizontalContentAlignment="Right" VerticalContentAlignment="Center"/>
+            <Button Background="{x:Null}" BorderBrush="{x:Null}" Click="MenuItem_ZoomOut_Click">
+                <Image Source="Images/ZoomOut_16x.png"/>
+            </Button>
+
+            <Slider x:Name="Slider_Zoom" VerticalAlignment="Center" Width="160" 
+                    IsSnapToTickEnabled="True"
+                    Minimum="25"
+                    Maximum="400"
+                    Ticks="25,50,75,100,125,150,200,300,400"
+                    Value="100" VerticalContentAlignment="Center"
+                    ValueChanged="Slider_Zoom_ValueChanged"/>
             
+            <Button Background="{x:Null}" BorderBrush="{x:Null}" Click="MenuItem_ZoomIn_Click">
+                <Image Source="Images/ZoomIn_16x.png"/>
+            </Button>
         </StackPanel>
         
-        <Canvas Grid.Row="2" x:Name="MainCanvas2" Height="640" Width="640" Background="DarkSlateBlue" Margin="0.4,0,76.6,-220" Grid.RowSpan="3" Grid.Column="2" Initialized="MainCanvas2_Initialized"></Canvas>
+        <Canvas Grid.Row="2" x:Name="MainCanvas2" Height="640" Width="640" Background="DarkSlateBlue"  Initialized="MainCanvas2_Initialized" MouseWheel="MainCanvas2_MouseWheel">
+            <Canvas.RenderTransform>
+                <MatrixTransform x:Name="matrixTransform" />
+            </Canvas.RenderTransform>
+        </Canvas>
     </Grid>
 </Window>

@@ -89,5 +89,61 @@ namespace IconEditor
                 MessageBoxImage.Information,
                 MessageBoxResult.Yes);
         }
+
+        private void MenuItem_ZoomOut_Click(object sender, RoutedEventArgs e)
+        {
+            int index = Slider_Zoom.Ticks.IndexOf(Slider_Zoom.Value);
+            index--;
+
+            if (0 > index)
+                return;
+
+            Slider_Zoom.Value = Slider_Zoom.Ticks[index];
+        }
+
+        private void MenuItem_ZoomIn_Click(object sender, RoutedEventArgs e)
+        {
+            int index = Slider_Zoom.Ticks.IndexOf(Slider_Zoom.Value);
+            index++;
+
+            if (Slider_Zoom.Ticks.Count <= index)
+                return;
+
+            Slider_Zoom.Value = Slider_Zoom.Ticks[index];
+        }
+
+        private void Slider_Zoom_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            if (MainCanvas2 == null) return;
+
+            //Matrixを使うと拡縮とか使えるよん
+            Matrix matrix = new Matrix();
+
+            //*0.01にしているのはパーセントを0.1とかに直しているからだよん
+            matrix.Scale(Slider_Zoom.Value * 0.01, Slider_Zoom.Value * 0.01);
+            matrixTransform.Matrix = matrix;
+
+            //%の表示を変えるよん
+            ZoomLavel.Content = Slider_Zoom.Value + "%";
+
+            //メインキャンバスの大きさを変えるよろしくおねがいしますん
+            MainCanvas2.Width = 640 * Slider_Zoom.Value * 0.01;
+            MainCanvas2.Height = 640 * Slider_Zoom.Value * 0.01;
+        }
+
+        private void MenuItem_ZoomIn_Click_1(object sender, RoutedEventArgs e)
+        {
+            MenuItem_ZoomIn_Click(sender,e);
+        }
+
+        private void MenuItem_ZoomOut_Click_1(object sender, RoutedEventArgs e)
+        {
+            MenuItem_ZoomOut_Click(sender, e);
+        }
+
+        private void MainCanvas2_MouseWheel(object sender, MouseWheelEventArgs e)
+        {
+
+        }
     }
 }
