@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "BxRjXs5xxCB4SlzYWy5DTXpF1bqKykTd4j8vaKAR2n/00A7XcUMXOSlY+WdgPbH/TqHgELoeB8aXGwm/hw9wpA==",
+  "dgSpecHash": "4kDX6r3VRmcGF+bPyWt6r2z3yrtUx/SA66GxbekmLle1YuUjPCVMFCEQvtgWASuQRg9RILLPPOlKWL3gd8P6Gw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\yuta2\\Desktop\\IconEditor\\IconEditor\\IconEditor.csproj",
+  "projectFilePath": "C:\\Users\\yuta2\\Desktop\\WPF Summary\\IconEditor\\IconEditor\\IconEditor.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\yuta2\\.nuget\\packages\\commonwin32\\2.1.0.3\\commonwin32.2.1.0.3.nupkg.sha512",
     "C:\\Users\\yuta2\\.nuget\\packages\\microsoft.windows.sdk.contracts\\10.0.22000.196\\microsoft.windows.sdk.contracts.10.0.22000.196.nupkg.sha512",

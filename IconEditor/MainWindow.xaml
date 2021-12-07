@@ -8,7 +8,7 @@
         Title="☆スター・バースト・アイコン・エディタ☆" 
         Icon="Abstruct (2).png"
         xmlns:ui="http://schemas.modernwpf.com/2019"
-        ui:WindowHelper.UseModernWindowStyle="False">
+        ui:WindowHelper.UseModernWindowStyle="True">
     
     <!--<ui:SimpleStackPanel Margin="12" Spacing="24">
         <TextBlock Text="My first ModernWPF app" Style="{StaticResource HeaderTextBlockStyle}" />
@@ -137,7 +137,8 @@
             </Button>
         </StackPanel>
         
-        <Canvas Grid.Row="2" x:Name="MainCanvas2" Height="640" Width="640" Background="DarkSlateBlue"  Initialized="MainCanvas2_Initialized" MouseWheel="MainCanvas2_MouseWheel">
+        <Canvas Grid.Row="2" x:Name="MainCanvas2" Height="640" Width="640" Background="Black"  
+                Initialized="MainCanvas2_Initialized" MouseWheel="MainCanvas2_MouseWheel">
             <Canvas.RenderTransform>
                 <MatrixTransform x:Name="matrixTransform" />
             </Canvas.RenderTransform>

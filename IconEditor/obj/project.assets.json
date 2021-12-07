@@ -3394,6 +3394,7 @@
       "CommonWin32 >= 2.1.0.3",
       "Microsoft.Windows.SDK.Contracts >= 10.0.22000.196",
       "ModernWpf.MessageBox >= 0.5.1",
+      "ModernWpfUI >= 0.9.4",
       "System.Runtime.WindowsRuntime.UI.Xaml >= 4.7.0"
     ]
   },
@@ -3404,11 +3405,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\yuta2\\Desktop\\IconEditor\\IconEditor\\IconEditor.csproj",
+      "projectUniqueName": "C:\\Users\\yuta2\\Desktop\\WPF Summary\\IconEditor\\IconEditor\\IconEditor.csproj",
       "projectName": "IconEditor",
-      "projectPath": "C:\\Users\\yuta2\\Desktop\\IconEditor\\IconEditor\\IconEditor.csproj",
+      "projectPath": "C:\\Users\\yuta2\\Desktop\\WPF Summary\\IconEditor\\IconEditor\\IconEditor.csproj",
       "packagesPath": "C:\\Users\\yuta2\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\yuta2\\Desktop\\IconEditor\\IconEditor\\obj\\",
+      "outputPath": "C:\\Users\\yuta2\\Desktop\\WPF Summary\\IconEditor\\IconEditor\\obj\\",
       "projectStyle": "PackageReference",
       "skipContentFileWrite": true,
       "fallbackFolders": [
@@ -3446,6 +3447,10 @@
           "ModernWpf.MessageBox": {
             "target": "Package",
             "version": "[0.5.1, )"
+          },
+          "ModernWpfUI": {
+            "target": "Package",
+            "version": "[0.9.4, )"
           },
           "System.Runtime.WindowsRuntime.UI.Xaml": {
             "target": "Package",
