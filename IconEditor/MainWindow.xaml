@@ -9,14 +9,17 @@
         Icon="Abstruct (2).png"
         xmlns:ui="http://schemas.modernwpf.com/2019"
         ui:WindowHelper.UseModernWindowStyle="True">
-    
+
     <!--<ui:SimpleStackPanel Margin="12" Spacing="24">
         <TextBlock Text="My first ModernWPF app" Style="{StaticResource HeaderTextBlockStyle}" />
         <Button Content="I am a button" />
         <Button Content="I am an accent button" Style="{StaticResource AccentButtonStyle}" />
     </ui:SimpleStackPanel>-->
-    
-    
+
+    <Window.Resources>
+        <SolidColorBrush x:Key="BlueFill" Color="Blue"/>
+    </Window.Resources>
+
     <Grid Background="Black">
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
@@ -86,10 +89,10 @@
                         <Image Source="Images/Redo_16x.png"/>
                     </MenuItem.Icon>
                 </MenuItem>
-                <MenuItem x:Name="MenuItem_ZoomIn" Header="拡大" Click="MenuItem_ZoomIn_Click_1">
+                <MenuItem x:Name="MenuItem_ZoomIn" Header="拡大" Click="MenuItem_ZoomIn_Click">
                     <!--ここにアイコン-->
                 </MenuItem>
-                <MenuItem x:Name="MenuItem_ZoomOut" Header="縮小" Click="MenuItem_ZoomOut_Click_1">
+                <MenuItem x:Name="MenuItem_ZoomOut" Header="縮小" Click="MenuItem_ZoomOut_Click">
                     <!--ここにアイコン-->
                 </MenuItem>
             </MenuItem>
@@ -98,14 +101,14 @@
             </MenuItem>
         </Menu>
 
-        <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="0" Background="#FFF0F0F0">
+        <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="0" Background="Black">
             <Button x:Name="Button_NewFile" Padding="10" BorderBrush="{x:Null}" Background="{x:Null}">
                 <Image Source="Images/NewFile_16x.png"/>
             </Button>
             <Button x:Name="Button_Open" Padding="10" BorderBrush="{x:Null}" Background="{x:Null}">
                 <Image Source="Images/FolderOpened_Grey_16x.png"/>
             </Button>
-            
+
             <Button x:Name="Button_Undo" Padding="10" BorderBrush="{x:Null}" Background="{x:Null}">
                 <Image Source="Images/Redo_16x.png"/>
             </Button>
@@ -131,19 +134,69 @@
                     Ticks="25,50,75,100,125,150,200,300,400"
                     Value="100" VerticalContentAlignment="Center"
                     ValueChanged="Slider_Zoom_ValueChanged"/>
-            
+
             <Button Background="{x:Null}" BorderBrush="{x:Null}" Click="MenuItem_ZoomIn_Click">
                 <Image Source="Images/ZoomIn_16x.png"/>
             </Button>
         </StackPanel>
-        
-        <Canvas Grid.Row="2" x:Name="MainCanvas2" Height="640" Width="640" Background="Black"  
-                Initialized="MainCanvas2_Initialized" MouseWheel="MainCanvas2_MouseWheel">
-            <Canvas.RenderTransform>
-                <MatrixTransform x:Name="matrixTransform" />
-            </Canvas.RenderTransform>
-        </Canvas>
 
-        
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="200"/>
+            </Grid.ColumnDefinitions>
+
+            <ScrollViewer Grid.Column="0" Name="scrollViewer" VerticalScrollBarVisibility="Auto"
+                          HorizontalScrollBarVisibility="Auto" Foreground="{x:Null}">
+                <ScrollViewer.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0.0">
+                        <GradientStop Color="#FF8CECFF"/>
+                        <GradientStop Color="Black" Offset="0.1"/>
+                        <GradientStop Color="#FF8CECFF" Offset="1"/>
+                        <GradientStop Color="Black" Offset="0.9"/>
+                    </LinearGradientBrush>
+                </ScrollViewer.Background>
+
+                <Canvas x:Name="MainCanvas2" Height="640" Width="640" Background="Black"  
+                    Initialized="MainCanvas2_Initialized" MouseWheel="MainCanvas2_MouseWheel">
+                    <Canvas.RenderTransform>
+                        <MatrixTransform x:Name="matrixTransform" />
+                    </Canvas.RenderTransform>
+                </Canvas>
+            </ScrollViewer>
+
+            <GridSplitter Grid.Column="1" Width="4" HorizontalAlignment="Center"
+                          VerticalAlignment="Stretch">
+                <GridSplitter.Background>
+                    <LinearGradientBrush EndPoint="0,0.0" StartPoint="0,1.0">
+                        <GradientStop Color="#FF8CECFF" Offset="0.9"/>
+                        <GradientStop Color="Black"/>
+                        <GradientStop Color="#FF8CECFF" Offset="0.1"/>
+                        <GradientStop Color="Black" Offset="1"/>
+                    </LinearGradientBrush>
+                </GridSplitter.Background>
+            </GridSplitter>
+
+            <Grid Grid.Column="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Grid.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#FF8CECFF" Offset="1"/>
+                        <GradientStop Color="Black" Offset="0.1"/>
+                        <GradientStop Color="#FF8CECFF" Offset="0.0"/>
+                        <GradientStop Color="Black" Offset="0.9"/>
+                    </LinearGradientBrush>
+                </Grid.Background>
+
+                <Label Grid.Row="0" Content="カラパ" Margin="10"/>
+                <Rectangle Grid.Row="1" x:Name="ColorPalette" Height="30"
+                           Margin="10,0,10,10" Fill="Black" Stroke="White" MouseDown="ColorPalette_MouseDown"/>
+            </Grid>
+        </Grid>
+
     </Grid>
 </Window>

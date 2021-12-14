@@ -13,6 +13,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
+
+
 namespace IconEditor
 {
     /// <summary>
@@ -56,7 +58,9 @@ namespace IconEditor
         private void Rectangle_MouseDown(object sender, MouseButtonEventArgs e)
         {
             Rectangle rect = (Rectangle)sender;
-            rect.Fill = new SolidColorBrush(Color.FromArgb(255, 0, 0, 255));
+            //rect.Fill = new SolidColorBrush(Color.FromArgb(255, 0, 0, 255));
+            SolidColorBrush puletteBrush = (SolidColorBrush)ColorPalette.Fill;
+            rect.Fill = new SolidColorBrush(puletteBrush.Color);
         }
 
         private void Rectangle_MouseMove(object sender, MouseEventArgs  e)
@@ -65,7 +69,9 @@ namespace IconEditor
 
             if(e.LeftButton == MouseButtonState.Pressed)
             {
-                rect.Fill = new SolidColorBrush(Color.FromArgb(255, 0, 0, 255));
+                //rect.Fill = new SolidColorBrush(Color.FromArgb(255, 0, 0, 255));
+                SolidColorBrush puletteBrush = (SolidColorBrush)ColorPalette.Fill;
+                rect.Fill = new SolidColorBrush(puletteBrush.Color);
             }
             
         }
@@ -131,18 +137,45 @@ namespace IconEditor
             MainCanvas2.Height = 640 * Slider_Zoom.Value * 0.01;
         }
 
-        private void MenuItem_ZoomIn_Click_1(object sender, RoutedEventArgs e)
-        {
-            MenuItem_ZoomIn_Click(sender,e);
-        }
 
-        private void MenuItem_ZoomOut_Click_1(object sender, RoutedEventArgs e)
-        {
-            MenuItem_ZoomOut_Click(sender, e);
-        }
 
+
+        //  CTRL+マウスホイールで拡縮
         private void MainCanvas2_MouseWheel(object sender, MouseWheelEventArgs e)
         {
+            if ((Keyboard.GetKeyStates(Key.LeftCtrl) & KeyStates.Down) == KeyStates.Down ||
+                (Keyboard.GetKeyStates(Key.RightCtrl) & KeyStates.Down) == KeyStates.Down)
+            {
+                if (e.Delta > 0)
+                {
+                    MenuItem_ZoomIn_Click(sender, e);
+                }
+                else
+                {
+                    MenuItem_ZoomOut_Click(sender, e);
+                }
+            }
+        }
+
+        private void ColorPalette_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            //  カラーダイアログを呼び出す
+            System.Windows.Forms.ColorDialog cd = new System.Windows.Forms.ColorDialog();
+
+            cd.FullOpen = true;
+
+            //  カラーダイアログの色を設定
+            SolidColorBrush paletteBrush = (SolidColorBrush)ColorPalette.Fill;
+            cd.Color = System.Drawing.Color.FromArgb(paletteBrush.Color.A,
+                paletteBrush.Color.R, paletteBrush.Color.G, paletteBrush.Color.B);
+
+            //  ウィンドウが表示され、OKが押されたら
+            if(cd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                //  RectAngleを塗る色として設定
+                Color color = Color.FromArgb(cd.Color.A, cd.Color.R, cd.Color.G, cd.Color.B);
+                ColorPalette.Fill = new SolidColorBrush(color);
+            }
 
         }
     }
