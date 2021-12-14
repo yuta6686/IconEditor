@@ -22,12 +22,14 @@
 
     <Grid Background="Black">
         <Grid.RowDefinitions>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto" MinHeight="37.6"/>
+            <RowDefinition />
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <Menu Grid.Row="0" Height="Auto">
+        <!--メニュー-->
+        <Menu Grid.Row="0" Height="Auto" Margin="0,0,-0.4,0">
             <MenuItem Header=" ファイル(_F)">
                 <MenuItem x:Name="MenuItem_New" Header="新規(_N)" 
                           InputGestureText="[Ctrl] N " Click="MenuItem_New_Click">
@@ -90,10 +92,14 @@
                     </MenuItem.Icon>
                 </MenuItem>
                 <MenuItem x:Name="MenuItem_ZoomIn" Header="拡大" Click="MenuItem_ZoomIn_Click">
-                    <!--ここにアイコン-->
+                    <MenuItem.Icon>
+                        <Image Source="Images/ZoomIn_16x.png"/>
+                    </MenuItem.Icon>
                 </MenuItem>
                 <MenuItem x:Name="MenuItem_ZoomOut" Header="縮小" Click="MenuItem_ZoomOut_Click">
-                    <!--ここにアイコン-->
+                    <MenuItem.Icon>
+                        <Image Source="Images/ZoomOut_16x.png"/>
+                    </MenuItem.Icon>
                 </MenuItem>
             </MenuItem>
             <MenuItem x:Name="MenuItem_Help" Header="ヘルプ(_H)" InputGestureText="[Ctrl] H">
@@ -101,7 +107,8 @@
             </MenuItem>
         </Menu>
 
-        <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="0" Background="Black">
+        <!--スタックパネル-->
+        <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="0,0,-0.4,0.6" Background="Black">
             <Button x:Name="Button_NewFile" Padding="10" BorderBrush="{x:Null}" Background="{x:Null}">
                 <Image Source="Images/NewFile_16x.png"/>
             </Button>
@@ -140,7 +147,8 @@
             </Button>
         </StackPanel>
 
-        <Grid Grid.Row="2">
+
+        <Grid Grid.Row="1" Margin="0,30,-0.4,-0.4" Grid.RowSpan="3">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
                 <ColumnDefinition Width="Auto"/>
@@ -192,11 +200,34 @@
                     </LinearGradientBrush>
                 </Grid.Background>
 
-                <Label Grid.Row="0" Content="カラパ" Margin="10"/>
+                <Label Grid.Row="0" Content="カラーパレット" Margin="10"/>
                 <Rectangle Grid.Row="1" x:Name="ColorPalette" Height="30"
-                           Margin="10,0,10,10" Fill="Black" Stroke="White" MouseDown="ColorPalette_MouseDown"/>
+                           Margin="10,0,10,10" Fill="Black" Stroke="White" 
+                           MouseDown="ColorPalette_MouseDown"/>
             </Grid>
         </Grid>
 
+        <GridSplitter Grid.Row="3" HorizontalAlignment="Left" 
+                      Background="White"/>
+
+        <StatusBar Grid.Row="3" HorizontalAlignment="Left"
+                   Foreground="White">
+            <StatusBar.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FF8CECFF" Offset="1"/>
+                    <GradientStop Color="Black" Offset="0.1"/>
+                </LinearGradientBrush>
+            </StatusBar.Background>
+
+            
+            <Label  Content="           "/>
+            <Separator />
+            <Label Name="StatusBarLabel" Content="aaa"/>
+            <Separator />
+            <Label Name="StatusBarLabel_Scale" Content="拡大率：100%"/>
+            <Separator />
+
+
+        </StatusBar>
     </Grid>
 </Window>

@@ -67,6 +67,15 @@ namespace IconEditor
         {
             Rectangle rect = (Rectangle)sender;
 
+            String text;
+
+            int x = (int)Canvas.GetLeft(rect) / 20;
+            int y = (int)Canvas.GetTop(rect) / 20;
+
+            text = "列:" + x.ToString() +"、"+ "行" + y.ToString();
+
+            StatusBarLabel.Content = text;
+
             if(e.LeftButton == MouseButtonState.Pressed)
             {
                 //rect.Fill = new SolidColorBrush(Color.FromArgb(255, 0, 0, 255));
@@ -105,6 +114,9 @@ namespace IconEditor
                 return;
 
             Slider_Zoom.Value = Slider_Zoom.Ticks[index];
+
+            //ステータスバーの拡大率を変更
+            StatusBarLabel_Scale.Content = "拡大率：" + Slider_Zoom.Value.ToString() + "%";
         }
 
         private void MenuItem_ZoomIn_Click(object sender, RoutedEventArgs e)
@@ -116,23 +128,30 @@ namespace IconEditor
                 return;
 
             Slider_Zoom.Value = Slider_Zoom.Ticks[index];
+
+            //ステータスバーの拡大率を変更
+            StatusBarLabel_Scale.Content = "拡大率：" + Slider_Zoom.Value.ToString() + "%";
         }
 
         private void Slider_Zoom_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
             if (MainCanvas2 == null) return;
 
-            //Matrixを使うと拡縮とか使えるよん
+            //Matrixを使うと拡縮とか使える
             Matrix matrix = new Matrix();
 
-            //*0.01にしているのはパーセントを0.1とかに直しているからだよん
+            //*0.01にしているのはパーセントを0.1とかに直している
             matrix.Scale(Slider_Zoom.Value * 0.01, Slider_Zoom.Value * 0.01);
             matrixTransform.Matrix = matrix;
 
-            //%の表示を変えるよん
+            //%の表示を変える
             ZoomLavel.Content = Slider_Zoom.Value + "%";
 
-            //メインキャンバスの大きさを変えるよろしくおねがいしますん
+            //ステータスバーの拡大率を変更
+            StatusBarLabel_Scale.Content = "拡大率：" + Slider_Zoom.Value.ToString()+"%";
+
+
+            //メインキャンバスの大きさを変える
             MainCanvas2.Width = 640 * Slider_Zoom.Value * 0.01;
             MainCanvas2.Height = 640 * Slider_Zoom.Value * 0.01;
         }
