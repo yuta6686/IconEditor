@@ -16,6 +16,26 @@
         <Button Content="I am an accent button" Style="{StaticResource AccentButtonStyle}" />
     </ui:SimpleStackPanel>-->
 
+    <Window.CommandBindings>
+        
+        <CommandBinding Command="{x:Static local:MainWindow.UndoCommand}"
+                        Executed="MenuItem_Undo_Click"/>
+        
+        <CommandBinding Command="{x:Static local:MainWindow.RedoCommand}"
+                        Executed="MenuItem_Redo_Click"/>
+
+        <CommandBinding Command="{x:Static local:MainWindow.SaveAsCommand}"
+                        Executed="MenuItem_SaveAs_Click"/>
+
+    </Window.CommandBindings>
+
+    <Window.InputBindings>
+        <KeyBinding Gesture="Ctrl+Z"        Command="{x:Static local:MainWindow.UndoCommand}"/>
+        <KeyBinding Gesture="Ctrl+Y"        Command="{x:Static local:MainWindow.RedoCommand}"/>
+        <KeyBinding Gesture="Shift+Ctrl+Z"  Command="{x:Static local:MainWindow.RedoCommand}"/>
+        <KeyBinding Gesture="Shift+Ctrl+S"  Command="{x:Static local:MainWindow.SaveAsCommand}"/>
+    </Window.InputBindings>
+    
     <Window.Resources>
         <SolidColorBrush x:Key="BlueFill" Color="Blue"/>
     </Window.Resources>
@@ -44,7 +64,7 @@
                 </MenuItem>
 
                 <MenuItem x:Name="MenuItem_Open" Header="開く(_O)..." 
-                          InputGestureText="[Ctrl] O ">
+                          InputGestureText="[Ctrl] O " Click="MenuItem_Open_Click">
                     <MenuItem.Icon>
                         <Image Source="Images/FolderOpened_grey_16x.png"/>
                     </MenuItem.Icon>
@@ -56,8 +76,8 @@
                 <MenuItem x:Name="MenuItem_Save" Header="保存(_S)" InputGestureText="[Ctrl] S ">
 
                 </MenuItem>
-                <MenuItem x:Name="MenuItem_SaveAs" Header="名前をつけて保存..." 
-                          InputGestureText="[Ctrl Shift] S  ">
+                <MenuItem x:Name="MenuItem_SaveAs" Header="名前をつけて保存(_A)..." 
+                          InputGestureText="[Ctrl Shift] S  " Click="MenuItem_SaveAs_Click">
 
                 </MenuItem>
                 <Separator/>
@@ -81,12 +101,12 @@
 
             </MenuItem>
             <MenuItem x:Name="MenuItem_Edit" Header="編集(_E)">
-                <MenuItem x:Name="MenuItem_Undo" Header="元に戻す" InputGestureText="[Ctrl] Z">
+                <MenuItem x:Name="MenuItem_Undo" Header="元に戻す" InputGestureText="[Ctrl] Z" Click="MenuItem_Undo_Click">
                     <MenuItem.Icon>
                         <Image Source="Images/Undo_16x.png"/>
                     </MenuItem.Icon>
                 </MenuItem>
-                <MenuItem x:Name="MenuItem_Redo" Header="やり直す" InputGestureText="[Ctrl] Y">
+                <MenuItem x:Name="MenuItem_Redo" Header="やり直す" InputGestureText="[Ctrl] Y" Click="MenuItem_Redo_Click">
                     <MenuItem.Icon>
                         <Image Source="Images/Redo_16x.png"/>
                     </MenuItem.Icon>
@@ -114,13 +134,16 @@
             </Button>
             <Button x:Name="Button_Open" Padding="10" BorderBrush="{x:Null}" Background="{x:Null}">
                 <Image Source="Images/FolderOpened_Grey_16x.png"/>
+                
             </Button>
 
-            <Button x:Name="Button_Undo" Padding="10" BorderBrush="{x:Null}" Background="{x:Null}">
-                <Image Source="Images/Redo_16x.png"/>
-            </Button>
-            <Button x:Name="Button_Redo" Padding="10" BorderBrush="{x:Null}" Background="{x:Null}">
+            <Button x:Name="Button_Undo" Padding="10" BorderBrush="{x:Null}" Background="{x:Null}" Click="Button_Undo_Click" KeyDown="Button_Undo_KeyDown">
                 <Image Source="Images/Undo_16x.png"/>
+                
+            </Button>
+            <Button x:Name="Button_Redo" Padding="10" BorderBrush="{x:Null}" Background="{x:Null}" Click="Button_Redo_Click">
+                <Image Source="Images/Redo_16x.png"/>
+                
             </Button>
             <Button x:Name="Button_Zoom" Padding="10" BorderBrush="{x:Null}" Background="{x:Null}">
                 <Image Source="Images/NewFile_16x.png"/>
