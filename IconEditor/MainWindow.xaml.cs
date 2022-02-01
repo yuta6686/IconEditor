@@ -18,9 +18,6 @@ using System.IO;
 
 namespace IconEditor
 {
-    /// <summary>
-    /// MainWindow.xaml の相互作用ロジック
-    /// </summary>
     public partial class MainWindow : Window
     {
 
@@ -28,6 +25,8 @@ namespace IconEditor
         Rectangle[,] Rectangles = new Rectangle[32, 32];
         Stack<Color[,]> UndoStack = new Stack<Color[,]>();
         Stack<Color[,]> RedoStack = new Stack<Color[,]>();
+
+        Rectangle[,] Copy = new Rectangle[32, 32];
 
         public static RoutedCommand UndoCommand { get; }
         = new RoutedCommand(nameof(UndoCommand), typeof(MainWindow));
@@ -37,6 +36,12 @@ namespace IconEditor
 
         public static RoutedCommand SaveAsCommand { get; }
         = new RoutedCommand(nameof(SaveAsCommand), typeof(MainWindow));
+
+        public static RoutedCommand CopyCommand { get; }
+        = new RoutedCommand(nameof(CopyCommand), typeof(MainWindow));
+
+        public static RoutedCommand PasteCommand { get; }
+        = new RoutedCommand(nameof(PasteCommand), typeof(MainWindow));
 
         public MainWindow()
         {
@@ -405,6 +410,81 @@ namespace IconEditor
 
             
 
+        }
+
+        private void MenuItem_NewIn_Empty_Click(object sender, RoutedEventArgs e)
+        {
+            Color[,] color = new Color[32, 32];
+
+            for (int y = 0; y < 32; y++)
+            {
+                for (int x = 0; x < 32; x++)
+                {
+                    Rectangles[y,x].Fill = new SolidColorBrush(Colors.White);
+                }
+            }
+           
+        }
+
+        private void MenuItem_Copy_Click(object sender, RoutedEventArgs e)
+        {
+            byte[] pixels = new byte[32 * 32 * 4];
+
+            //  ここにpixelsに色を保存するコード
+            //  縦
+            for (int y = 0; y < 32; y++)
+            {
+                //  横
+                for (int x = 0; x < 32; x++)
+                {
+                    SolidColorBrush brush = (SolidColorBrush)Rectangles[y, x].Fill;
+
+                    pixels[(y * 32 + x) * 4 + 0] = brush.Color.B;
+                    pixels[(y * 32 + x) * 4 + 1] = brush.Color.G;
+                    pixels[(y * 32 + x) * 4 + 2] = brush.Color.R;
+                    pixels[(y * 32 + x) * 4 + 3] = brush.Color.A;
+                }
+            }           
+
+            WriteableBitmap bitmap = new WriteableBitmap(32, 32, 300, 300, PixelFormats.Bgra32, null);
+            bitmap.WritePixels(new Int32Rect(0, 0, 32, 32), pixels, 32 * 4, 0, 0);
+
+            Clipboard.SetImage(bitmap);
+            
+        }
+
+        private void MenuItem_Paste_Click(object sender, RoutedEventArgs e)
+        {                                   
+            BitmapSource source = Clipboard.GetImage();
+            if (source == null)
+                return;
+
+            byte[] pixels = new byte[source.PixelWidth * source.PixelHeight * 4];
+
+
+            source.CopyPixels( pixels, source.PixelWidth * 4, 0);
+
+            Color[,] color = new Color[32, 32];
+
+            int width = Math.Min(32, source.PixelWidth);
+            int height = Math.Min(32, source.PixelHeight);
+
+            //  縦
+            for (int y = 0; y < height; y++)
+            {
+                //  横
+                for (int x = 0; x < width; x++)
+                {                    
+                    color[y, x].B = pixels[(y * source.PixelWidth + x) * 4 + 0];
+                    color[y, x].G = pixels[(y * source.PixelWidth + x) * 4 + 1];
+                    color[y, x].R = pixels[(y * source.PixelWidth + x) * 4 + 2];
+                    color[y, x].A = 255;
+
+                    Rectangles[y, x].Fill = new SolidColorBrush(color[y, x]);
+                }
+            }
+
+            UndoStack.Push(color);
         }
     }
 }
