@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:IconEditor"
         mc:Ignorable="d"
         Title="☆スター・バースト・アイコン・エディタ☆" 
-        Icon="Abstruct (2).png"
+        Icon="Images/icon.png"        
         xmlns:ui="http://schemas.modernwpf.com/2019"
         ui:WindowHelper.UseModernWindowStyle="True">
 
@@ -19,16 +19,16 @@
     <Window.CommandBindings>
         
         <CommandBinding Command="{x:Static local:MainWindow.UndoCommand}"
-                        Executed="MenuItem_Undo_Click"/>
+                        Executed="MenuItem_Undo_Click" CanExecute="MenuItem_Undo_Click_Can"/>
         
         <CommandBinding Command="{x:Static local:MainWindow.RedoCommand}"
-                        Executed="MenuItem_Redo_Click"/>
+                        Executed="MenuItem_Redo_Click" CanExecute="MenuItem_Redo_Click_Can"/>
 
         <CommandBinding Command="{x:Static local:MainWindow.SaveAsCommand}"
                         Executed="MenuItem_SaveAs_Click"/>
 
         <CommandBinding Command="{x:Static local:MainWindow.CopyCommand}"
-                        Executed="MenuItem_Copy_Click"/>
+                        Executed="MenuItem_Copy_Click" />
 
         <CommandBinding Command="{x:Static local:MainWindow.PasteCommand}"
                         Executed="MenuItem_Paste_Click"/>
@@ -110,12 +110,14 @@
 
             </MenuItem>
             <MenuItem x:Name="MenuItem_Edit" Header="編集(_E)">
-                <MenuItem x:Name="MenuItem_Undo" Header="元に戻す" InputGestureText="[Ctrl] Z" Click="MenuItem_Undo_Click">
+                <MenuItem x:Name="MenuItem_Undo" Header="元に戻す" InputGestureText="[Ctrl] Z" 
+                          Command="{x:Static local:MainWindow.UndoCommand}">
                     <MenuItem.Icon>
                         <Image Source="Images/Undo_16x.png"/>
                     </MenuItem.Icon>
                 </MenuItem>
-                <MenuItem x:Name="MenuItem_Redo" Header="やり直す" InputGestureText="[Ctrl] Y" Click="MenuItem_Redo_Click">
+                <MenuItem x:Name="MenuItem_Redo" Header="やり直す" InputGestureText="[Ctrl] Y" 
+                          Command="{x:Static local:MainWindow.RedoCommand}">
                     <MenuItem.Icon>
                         <Image Source="Images/Redo_16x.png"/>
                     </MenuItem.Icon>
@@ -159,7 +161,8 @@
                 
             </Button>
 
-            <Button x:Name="Button_Undo" Padding="10" BorderBrush="{x:Null}" Background="{x:Null}" Click="Button_Undo_Click" KeyDown="Button_Undo_KeyDown">
+            <Button x:Name="Button_Undo" Padding="10" BorderBrush="{x:Null}" Background="{x:Null}" 
+                    Click="Button_Undo_Click" KeyDown="Button_Undo_KeyDown">
                 <Image Source="Images/Undo_16x.png"/>
                 
             </Button>

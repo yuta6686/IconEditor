@@ -241,7 +241,13 @@ namespace IconEditor
             }
 
         }
-
+        private void MenuItem_Undo_Click_Can(object sender, CanExecuteRoutedEventArgs e)
+        {
+            if (UndoStack.Count == 0)
+                e.CanExecute = false;
+            else
+                e.CanExecute = true;
+        }
         private void MenuItem_Undo_Click(object sender, RoutedEventArgs e)
         {
             if (UndoStack.Count == 0) return;
@@ -276,6 +282,13 @@ namespace IconEditor
             }           
         }
 
+        private void MenuItem_Redo_Click_Can(object sender, CanExecuteRoutedEventArgs e)
+        {
+            if (RedoStack.Count == 0)
+                e.CanExecute = false;
+            else
+                e.CanExecute = true;
+        }
         private void MenuItem_Redo_Click(object sender, RoutedEventArgs e)
         {
             if (RedoStack.Count == 0) return;
@@ -485,6 +498,18 @@ namespace IconEditor
             }
 
             UndoStack.Push(color);
+        }
+
+       
+
+        private void MenuItem_Copy_Click_Can(object sender, CanExecuteRoutedEventArgs e)
+        {
+
+        }
+
+        private void MenuItem_Paste_Click_Can(object sender, CanExecuteRoutedEventArgs e)
+        {
+
         }
     }
 }
